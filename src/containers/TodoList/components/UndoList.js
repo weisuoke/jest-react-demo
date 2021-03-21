@@ -41,7 +41,7 @@ class UndoList extends React.Component {
                     data-test="delete-item"
                     className="undo-list-delete"
                     onClick={(e) => {
-                      e && e.stopPropagation()
+                      e.stopPropagation()
                       deleteItem(index)
                     }}
                   >
