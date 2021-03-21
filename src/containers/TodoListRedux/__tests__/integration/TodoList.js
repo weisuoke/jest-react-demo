@@ -27,3 +27,41 @@ it(`
   expect(listItems.length).toEqual(1)
   expect(listItems.text()).toContain(content)
 })
+
+/*
+  {
+    data: [
+      {
+        status: 'div',
+        value: 'dell lee'
+      }
+    ],
+    success: true
+  }
+ */
+it(`
+  1. 用户打开界面
+  2. 应该展示接口返回的数据
+`, (done) => {
+  const wrapper = mount(
+    <Provider store={store}>
+      <TodoList />
+    </Provider>
+  );
+
+  // 写法一
+  // setTimeout(() => {
+  //   wrapper.update()
+  //   const listItems = findTestWrapper(wrapper, 'list-item');
+  //   expect(listItems.length).toBe(1)
+  //   done()
+  // }, 100)
+
+  // 写法二
+  process.nextTick(() => {
+    wrapper.update()
+    const listItems = findTestWrapper(wrapper, 'list-item');
+    expect(listItems.length).toBe(1)
+    done()
+  })
+})
