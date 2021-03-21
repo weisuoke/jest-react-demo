@@ -10,19 +10,19 @@ describe('Header 组件', () => {
 
   it('包含一个input框', () => {
     const wrapper = shallow(<Header />)
-    const inputElem = findTestWrapper(wrapper, 'input')
+    const inputElem = findTestWrapper(wrapper, 'header-input')
     expect(inputElem.length).toBe(1)
   })
 
   it('input框内容，初始化应该为空', () => {
     const wrapper = shallow(<Header />)
-    const inputElem = findTestWrapper(wrapper, 'input');
+    const inputElem = findTestWrapper(wrapper, 'header-input');
     expect(inputElem.prop("value")).toEqual('')
   })
 
   it('input框内容，当用户输入时，会跟随变化', () => {
     const wrapper = shallow(<Header />)
-    const inputElem = findTestWrapper(wrapper, 'input');
+    const inputElem = findTestWrapper(wrapper, 'header-input');
     const userInput = '今天要学习 Jest'
     inputElem.simulate('change', {
       target: {
@@ -38,7 +38,7 @@ describe('Header 组件', () => {
   it('input 框输入回车时，如果input无内容，无操作', () => {
     const fn = jest.fn()
     const wrapper = shallow(<Header addUndoItem={fn} />)
-    const inputElem = findTestWrapper(wrapper, 'input');
+    const inputElem = findTestWrapper(wrapper, 'header-input');
     wrapper.setState({
       value: ''
     })
@@ -51,7 +51,7 @@ describe('Header 组件', () => {
   it('input 框输入回车时，如果input有内容，函数应该被调用', () => {
     const fn = jest.fn()
     const wrapper = shallow(<Header addUndoItem={fn} />)
-    const inputElem = findTestWrapper(wrapper, 'input');
+    const inputElem = findTestWrapper(wrapper, 'header-input');
     const userInput = "学习 Jest"
     wrapper.setState({
       value: userInput
@@ -67,7 +67,7 @@ describe('Header 组件', () => {
   it('input 框输入回车时，如果input有内容，input框的内容应该被清除', () => {
     const fn = jest.fn()
     const wrapper = shallow(<Header addUndoItem={fn} />)
-    const inputElem = findTestWrapper(wrapper, 'input');
+    const inputElem = findTestWrapper(wrapper, 'header-input');
     const userInput = "学习 Jest"
     wrapper.setState({
       value: userInput
@@ -75,7 +75,7 @@ describe('Header 组件', () => {
     inputElem.simulate('keyUp', {
       keyCode: 13
     })
-    const newInputElement = findTestWrapper(wrapper, 'input');
+    const newInputElement = findTestWrapper(wrapper, 'header-input');
     expect(newInputElement.prop('value')).toBe('')
   })
 })
